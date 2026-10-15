@@ -1,0 +1,16 @@
+{
+  "name": "light-visual-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bangla-first Class 9-10 interactive reflection and refraction lab",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0",
+    "vitest": "^3.0.8"
+  }
+}

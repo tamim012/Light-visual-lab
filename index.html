@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>আলোক পরীক্ষাগার | Light Visual Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="আলোক পরীক্ষাগার Home">
+      <span class="brand-icon">✦</span>
+      <span><strong>আলোক পরীক্ষাগার</strong><small>LIGHT VISUAL LAB</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="class-pill">Class 9–10 Physics</span>
+      <button id="languageBtn" class="ghost-btn" type="button">বাংলা / EN</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading">SIMULATION LAB</div>
+      <button class="nav-item active" data-tab="mirror" type="button"><span>◉</span><span data-bn="দর্পণ" data-en="Mirrors">দর্পণ</span></button>
+      <button class="nav-item" data-tab="refraction" type="button"><span>↝</span><span data-bn="প্রতিসরণ" data-en="Refraction">প্রতিসরণ</span></button>
+      <button class="nav-item" data-tab="lesson" type="button"><span>▤</span><span data-bn="সূত্র ও শেখা" data-en="Learn & Formula">সূত্র ও শেখা</span></button>
+      <div class="sidebar-note">
+        <strong data-bn="কীভাবে ব্যবহার করবে?" data-en="How to use">কীভাবে ব্যবহার করবে?</strong>
+        <p data-bn="কন্ট্রোল বদলাও, রশ্মির পথ দেখো, তারপর প্রতিবিম্বের অবস্থান, আকার ও প্রকৃতি পড়ো।" data-en="Change the controls, inspect the rays, then read image position, size and nature.">কন্ট্রোল বদলাও, রশ্মির পথ দেখো, তারপর প্রতিবিম্বের অবস্থান, আকার ও প্রকৃতি পড়ো।</p>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow" id="eyebrow">INTERACTIVE PHYSICS LAB</p>
+          <h1 id="pageTitle">দর্পণে আলোর প্রতিফলন</h1>
+          <p id="pageSubtitle">বস্তু সরিয়ে দেখো প্রতিবিম্ব কোথায় তৈরি হয় এবং কেমন হয়।</p>
+        </div>
+        <button id="resetBtn" class="secondary-btn" type="button">↺ <span data-bn="রিসেট" data-en="Reset">রিসেট</span></button>
+      </div>
+
+      <div class="main-grid" id="mirrorPanel">
+        <section class="panel controls-panel">
+          <div class="panel-title"><span class="title-dot"></span><h2 data-bn="পরীক্ষার নিয়ন্ত্রণ" data-en="Experiment controls">পরীক্ষার নিয়ন্ত্রণ</h2></div>
+          <label class="field-label" for="mirrorType" data-bn="দর্পণের ধরন" data-en="Mirror type">দর্পণের ধরন</label>
+          <select id="mirrorType">
+            <option value="concave">অবতল দর্পণ (Concave)</option>
+            <option value="convex">উত্তল দর্পণ (Convex)</option>
+            <option value="plane">সমতল দর্পণ (Plane)</option>
+          </select>
+
+          <div class="field-row"><label class="field-label" for="focalLength" data-bn="ফোকাল দৈর্ঘ্য |f|" data-en="Focal length |f|">ফোকাল দৈর্ঘ্য |f|</label><output id="focalOut">100 cm</output></div>
+          <input id="focalLength" type="range" min="40" max="160" value="100" step="5">
+          <div class="range-ends"><span>40 cm</span><span>160 cm</span></div>
+
+          <div class="field-row"><label class="field-label" for="objectDistance" data-bn="বস্তুর দূরত্ব |u|" data-en="Object distance |u|">বস্তুর দূরত্ব |u|</label><output id="objectOut">200 cm</output></div>
+          <input id="objectDistance" type="range" min="20" max="400" value="200" step="5">
+          <div class="range-ends"><span>20 cm</span><span>400 cm</span></div>
+
+          <div class="field-row"><label class="field-label" for="objectHeight" data-bn="বস্তুর উচ্চতা" data-en="Object height">বস্তুর উচ্চতা</label><output id="heightOut">40 cm</output></div>
+          <input id="objectHeight" type="range" min="10" max="70" value="40" step="5">
+          <div class="range-ends"><span>10 cm</span><span>70 cm</span></div>
+
+          <div class="divider"></div>
+          <label class="toggle-row"><span><strong data-bn="প্রধান অক্ষ" data-en="Principal axis">প্রধান অক্ষ</strong><small data-bn="Reference line দেখাও" data-en="Show reference line">Reference line দেখাও</small></span><input id="showAxis" type="checkbox" checked></label>
+          <label class="toggle-row"><span><strong data-bn="ফোকাস ও বক্রতার কেন্দ্র" data-en="Focus and centre">ফোকাস ও বক্রতার কেন্দ্র</strong><small data-bn="F ও C চিহ্নিত করো" data-en="Mark F and C">F ও C চিহ্নিত করো</small></span><input id="showPoints" type="checkbox" checked></label>
+          <label class="toggle-row"><span><strong data-bn="রশ্মির পথ" data-en="Ray paths">রশ্মির পথ</strong><small data-bn="প্রধান রশ্মিগুলো দেখাও" data-en="Show principal rays">প্রধান রশ্মিগুলো দেখাও</small></span><input id="showRays" type="checkbox" checked></label>
+          <p class="hint">ℹ️ <span data-bn="এই মডিউলে গোলীয় দর্পণের জন্য পাঠ্যবইয়ের paraxial approximation ব্যবহার করা হয়।" data-en="This module uses the textbook paraxial approximation for spherical mirrors.">এই মডিউলে গোলীয় দর্পণের জন্য পাঠ্যবইয়ের paraxial approximation ব্যবহার করা হয়।</span></p>
+        </section>
+
+        <section class="panel canvas-panel">
+          <div class="canvas-toolbar">
+            <div><span class="live-dot"></span><strong data-bn="লাইভ রে ডায়াগ্রাম" data-en="Live ray diagram">লাইভ রে ডায়াগ্রাম</strong></div>
+            <span class="canvas-caption" data-bn="বস্তুর তীরটি ধরে অক্ষ বরাবর সরাও" data-en="Drag the object arrow along the axis">বস্তুর তীরটি ধরে অক্ষ বরাবর সরাও</span>
+          </div>
+          <div class="canvas-wrap"><canvas id="rayCanvas" aria-label="Interactive ray diagram"></canvas></div>
+          <div class="drag-hint" id="dragHint">↔ বস্তুর তীরটি ধরে বাম-ডানে সরাও — প্রতিবিম্ব সঙ্গে সঙ্গে বদলাবে</div>
+          <div class="legend">
+            <span><i class="legend-line incident"></i><span data-bn="আপতিত রশ্মি" data-en="Incident ray">আপতিত রশ্মি</span></span>
+            <span><i class="legend-line reflected"></i><span data-bn="প্রতিফলিত রশ্মি" data-en="Reflected ray">প্রতিফলিত রশ্মি</span></span>
+            <span><i class="legend-line virtual"></i><span data-bn="কাল্পনিক বর্ধিতাংশ" data-en="Virtual extension">কাল্পনিক বর্ধিতাংশ</span></span>
+          </div>
+        </section>
+      </div>
+
+      <section class="results-grid" id="mirrorResults">
+        <article class="result-card primary-result">
+          <div class="result-label"><span>◎</span><span data-bn="প্রতিবিম্বের অবস্থান" data-en="Image position">প্রতিবিম্বের অবস্থান</span></div>
+          <div class="result-value" id="imagePosition">100 cm</div>
+          <div class="result-sub" id="imagePositionSub">দর্পণের সামনে</div>
+        </article>
+        <article class="result-card">
+          <div class="result-label"><span>↕</span><span data-bn="প্রতিবিম্বের আকার" data-en="Image size">প্রতিবিম্বের আকার</span></div>
+          <div class="result-value" id="imageSize">20 cm</div>
+          <div class="result-sub" id="magnification">বিবর্ধন m = −0.50</div>
+        </article>
+        <article class="result-card">
+          <div class="result-label"><span>◌</span><span data-bn="প্রতিবিম্বের প্রকৃতি" data-en="Image nature">প্রতিবিম্বের প্রকৃতি</span></div>
+          <div class="nature-tags" id="natureTags"><span class="tag">বাস্তব</span><span class="tag">উল্টো</span></div>
+          <div class="result-sub" id="natureSub">পর্দায় ধরা সম্ভব</div>
+        </article>
+      </section>
+
+      <section class="panel explanation-panel" id="mirrorExplanation">
+        <div class="panel-title"><span class="title-dot"></span><h2 data-bn="সূত্র ও ব্যাখ্যা" data-en="Formula & explanation">সূত্র ও ব্যাখ্যা</h2></div>
+        <div class="formula-grid">
+          <div class="formula-box"><span data-bn="দর্পণ সূত্র" data-en="Mirror formula">দর্পণ সূত্র</span><strong>1/f = 1/v + 1/u</strong><small data-bn="বাস্তব বস্তুর দূরত্ব ও বাস্তব প্রতিবিম্বের দূরত্ব এখানে ধনাত্মক মানে দেখানো হয়েছে।" data-en="Displayed distances use positive magnitudes for real objects and real images.">বাস্তব বস্তুর দূরত্ব ও বাস্তব প্রতিবিম্বের দূরত্ব এখানে ধনাত্মক মানে দেখানো হয়েছে।</small></div>
+          <div class="formula-box"><span data-bn="বিবর্ধন" data-en="Magnification">বিবর্ধন</span><strong>m = hᵢ / hₒ = −v/u</strong><small data-bn="m ঋণাত্মক হলে উল্টো, ধনাত্মক হলে সোজা প্রতিবিম্ব।" data-en="Negative m means inverted; positive m means upright.">m ঋণাত্মক হলে উল্টো, ধনাত্মক হলে সোজা প্রতিবিম্ব।</small></div>
+        </div>
+        <p id="explanationText" class="explanation-text">বস্তু 2F-এ থাকলে অবতল দর্পণে প্রতিবিম্ব C বা 2F-এ তৈরি হয়; বাস্তব, উল্টো এবং সমান আকারের হয়।</p>
+      </section>
+
+      <div class="main-grid hidden" id="refractionPanel">
+        <section class="panel controls-panel">
+          <div class="panel-title"><span class="title-dot"></span><h2 data-bn="প্রতিসরণ নিয়ন্ত্রণ" data-en="Refraction controls">প্রতিসরণ নিয়ন্ত্রণ</h2></div>
+          <label class="field-label" for="medium1" data-bn="প্রথম মাধ্যম" data-en="First medium">প্রথম মাধ্যম</label>
+          <select id="medium1"><option value="1">বায়ু (n = 1.00)</option><option value="1.33">পানি (n = 1.33)</option><option value="1.5">কাচ (n = 1.50)</option></select>
+          <label class="field-label" for="medium2" data-bn="দ্বিতীয় মাধ্যম" data-en="Second medium">দ্বিতীয় মাধ্যম</label>
+          <select id="medium2"><option value="1.5">কাচ (n = 1.50)</option><option value="1.33">পানি (n = 1.33)</option><option value="1">বায়ু (n = 1.00)</option></select>
+          <div class="field-row"><label class="field-label" for="incidenceAngle" data-bn="আপতন কোণ (i)" data-en="Incidence angle (i)">আপতন কোণ (i)</label><output id="incidenceOut">30°</output></div>
+          <input id="incidenceAngle" type="range" min="0" max="89" value="30">
+          <div class="range-ends"><span>0°</span><span>89°</span></div>
+          <p class="hint">ℹ️ <span data-bn="কোণ অভিলম্ব থেকে মাপা হয়, বিভেদতল থেকে নয়।" data-en="Angles are measured from the normal, not from the interface.">কোণ অভিলম্ব থেকে মাপা হয়, বিভেদতল থেকে নয়।</span></p>
+        </section>
+        <section class="panel canvas-panel">
+          <div class="canvas-toolbar"><div><span class="live-dot"></span><strong data-bn="প্রতিসরণ রে ডায়াগ্রাম" data-en="Refraction ray diagram">প্রতিসরণ রে ডায়াগ্রাম</strong></div></div>
+          <div class="canvas-wrap"><canvas id="refractionCanvas" aria-label="Refraction ray diagram"></canvas></div>
+          <div class="legend"><span><i class="legend-line incident"></i>Incident</span><span><i class="legend-line reflected"></i>Refracted</span><span><i class="legend-line virtual"></i>Normal</span></div>
+        </section>
+      </div>
+      <section class="results-grid hidden" id="refractionResults">
+        <article class="result-card primary-result"><div class="result-label">প্রতিসরণ কোণ (r)</div><div class="result-value" id="refractedAngle">19.47°</div><div class="result-sub" id="bendDirection">অভিলম্বের দিকে বাঁকে</div></article>
+        <article class="result-card"><div class="result-label">Snell's law</div><div class="result-value formula-small">n₁ sin i = n₂ sin r</div><div class="result-sub" id="snellCheck">উভয় পাশের মান সমান</div></article>
+        <article class="result-card"><div class="result-label">Critical angle</div><div class="result-value" id="criticalAngle">41.81°</div><div class="result-sub" id="tirStatus">পূর্ণ অভ্যন্তরীণ প্রতিফলন হয়নি</div></article>
+      </section>
+      <section class="panel hidden" id="lessonPanel">
+        <div class="panel-title"><span class="title-dot"></span><h2 data-bn="সহজ সূত্র ও ধারণা" data-en="Formula guide">সহজ সূত্র ও ধারণা</h2></div>
+        <div class="lesson-grid">
+          <article class="lesson-card"><span class="lesson-icon">↩</span><h3>প্রতিফলন</h3><p>আপতন কোণ = প্রতিফলন কোণ। দুটি কোণই অভিলম্বের সঙ্গে মাপতে হয়।</p><strong>i = r</strong></article>
+          <article class="lesson-card"><span class="lesson-icon">⌒</span><h3>গোলীয় দর্পণ</h3><p>ক্ষুদ্র কোণের paraxial approximation-এ ফোকাল দৈর্ঘ্য বক্রতার ব্যাসার্ধের অর্ধেক।</p><strong>f = R/2</strong></article>
+          <article class="lesson-card"><span class="lesson-icon">↗</span><h3>প্রতিসরণ</h3><p>আলো এক মাধ্যম থেকে অন্য মাধ্যমে গেলে বেগ পরিবর্তনের কারণে দিক বদলাতে পারে।</p><strong>n₁ sin i = n₂ sin r</strong></article>
+          <article class="lesson-card"><span class="lesson-icon">◎</span><h3>প্রতিবিম্ব</h3><p>অবস্থান, আকার ও প্রকৃতি নির্ণয়ে দর্পণ সূত্র ও বিবর্ধন ব্যবহার করা হয়।</p><strong>m = hᵢ/hₒ</strong></article>
+        </div>
+        <div class="quiz-box">
+          <h3>দ্রুত যাচাই</h3>
+          <p>অবতল দর্পণে বস্তু বক্রতার কেন্দ্র C-তে রাখলে প্রতিবিম্ব কেমন হবে?</p>
+          <div class="quiz-options"><button class="quiz-option" data-correct="false">সোজা ও বড়</button><button class="quiz-option" data-correct="true">বাস্তব, উল্টো ও সমান আকারের</button><button class="quiz-option" data-correct="false">কাল্পনিক ও ছোট</button></div>
+          <p id="quizFeedback" class="quiz-feedback" aria-live="polite"></p>
+        </div>
+      </section>
+      <footer><span>Light Visual Lab · Educational simulation</span><span>বাংলা মাধ্যমের শিক্ষার্থীদের জন্য</span></footer>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
